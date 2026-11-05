@@ -1,0 +1,121 @@
+class,rank,term,weight
+amusement,1,caption__ danc,1.0325
+amusement,2,caption__danc,1.0325
+amusement,3,caption__ dan,0.976
+amusement,4,caption__danci,0.834
+amusement,5,caption__ancin,0.8009
+amusement,6,caption__anci,0.7932
+amusement,7,caption__ncin,0.7879
+amusement,8,caption__ncing,0.7879
+amusement,9,transcription__me,0.7843
+amusement,10,caption__lay,0.7644
+amusement,11,caption__layi,0.7531
+amusement,12,caption__layin,0.7531
+amusement,13,caption__playi,0.7531
+amusement,14,caption__nci,0.7427
+amusement,15,caption__play,0.7193
+awe,1,caption__ sui,0.9412
+awe,2,caption__ suit,0.9412
+awe,3,caption__sui,0.8518
+awe,4,caption__suit,0.8518
+awe,5,caption__uit,0.7977
+awe,6,caption__ui,0.6796
+awe,7,caption__suit ,0.6451
+awe,8,caption__uit ,0.6399
+awe,9,caption__ tie,0.5891
+awe,10,caption__ su,0.5787
+awe,11,transcription__فر,0.5305
+awe,12,caption__su,0.5202
+awe,13,caption__tie,0.5098
+awe,14,caption__line,0.4915
+awe,15,transcription__os,0.4533
+contentment,1,transcription__ i ,0.7031
+contentment,2,transcription__ i,0.667
+contentment,3,transcription__i ,0.6597
+contentment,4,caption__ bed,0.6117
+contentment,5,caption__bed,0.602
+contentment,6,transcription__y.,0.5934
+contentment,7,transcription__y. ,0.56
+contentment,8,caption__ tr,0.5218
+contentment,9,transcription__s.,0.5055
+contentment,10,caption__ lyi,0.4895
+contentment,11,caption__ lyin,0.4895
+contentment,12,caption__ ly,0.4895
+contentment,13,transcription__ wo,0.4736
+contentment,14,caption__itt,0.4672
+contentment,15,transcription__ell,0.4494
+excitement,1,caption__mil,0.7593
+excitement,2,caption__mili,0.7577
+excitement,3,caption__ smil,0.7514
+excitement,4,caption__ smi,0.7514
+excitement,5,caption__smil,0.7514
+excitement,6,caption__smi,0.7514
+excitement,7,transcription__'t,0.7262
+excitement,8,caption__ sm,0.6932
+excitement,9,caption__sm,0.6875
+excitement,10,caption__milin,0.6784
+excitement,11,caption__smili,0.6784
+excitement,12,transcription__to,0.6578
+excitement,13,caption__ hat,0.6462
+excitement,14,caption__ili,0.6448
+excitement,15,caption__ling ,0.635
+anger,1,transcription__! ,0.6319
+anger,2,caption__ gu,0.5442
+anger,3,caption__ gun,0.5413
+anger,4,caption__gu,0.5398
+anger,5,caption__gun,0.5248
+anger,6,caption__ ano,0.4738
+anger,7,caption__anot,0.4738
+anger,8,caption__anoth,0.4738
+anger,9,caption__ anot,0.4738
+anger,10,caption__nothe,0.4738
+anger,11,caption__noth,0.4738
+anger,12,transcription__ ᄀ,0.4657
+anger,13,caption__ano,0.4653
+anger,14,caption__gun ,0.4633
+anger,15,caption__ gun ,0.4633
+disgust,1,"transcription__, ",0.7273
+disgust,2,caption__ car,0.6675
+disgust,3,caption__ubwa,0.6344
+disgust,4,caption__subw,0.6344
+disgust,5,caption__ subw,0.6344
+disgust,6,caption__bway ,0.6344
+disgust,7,caption__subwa,0.6344
+disgust,8,caption__ubway,0.6344
+disgust,9,caption__ubw,0.6344
+disgust,10,caption__bw,0.6344
+disgust,11,caption__bwa,0.6344
+disgust,12,caption__bway,0.6344
+disgust,13,transcription__ k,0.5947
+disgust,14,caption__car,0.5895
+disgust,15,caption__ sub,0.5721
+fear,1,transcription__! ,1.0572
+fear,2,caption__lying,0.5244
+fear,3,caption__lyi,0.5244
+fear,4,caption__lyin,0.5244
+fear,5,caption__rk,0.5055
+fear,6,caption__ ly,0.4756
+fear,7,caption__ lyin,0.4756
+fear,8,caption__ lyi,0.4756
+fear,9,caption__ dark,0.4742
+fear,10,caption__dark,0.4742
+fear,11,caption__dar,0.4691
+fear,12,caption__ark,0.4675
+fear,13,caption__rson ,0.4673
+fear,14,caption__son ,0.4672
+fear,15,caption__ dar,0.4599
+sadness,1,transcription__. ,0.8761
+sadness,2,caption__ly,0.6503
+sadness,3,caption__lit ,0.5163
+sadness,4,caption__ lit ,0.5102
+sadness,5,caption__be,0.5024
+sadness,6,caption__ap,0.4882
+sadness,7,caption__imly,0.4876
+sadness,8,caption__diml,0.4876
+sadness,9,caption__dimly,0.4876
+sadness,10,caption__iml,0.4876
+sadness,11,caption__imly ,0.4876
+sadness,12,caption__ml,0.4876
+sadness,13,caption__mly,0.4876
+sadness,14,caption__ diml,0.4876
+sadness,15,caption__mly ,0.4876

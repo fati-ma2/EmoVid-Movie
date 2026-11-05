@@ -1,0 +1,9 @@
+true \ predicted,amusement,awe,contentment,excitement,anger,disgust,fear,sadness
+amusement,13,6,0,6,5,3,2,0
+awe,3,12,6,3,4,3,4,5
+contentment,2,3,16,4,5,15,3,6
+excitement,12,5,6,9,4,6,4,5
+anger,4,3,13,8,25,16,17,12
+disgust,0,2,4,5,5,15,6,6
+fear,2,8,5,4,3,5,26,21
+sadness,1,4,7,2,5,1,7,20

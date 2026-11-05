@@ -1,0 +1,17 @@
+split,class,precision,recall,f1,support
+dev,amusement,0.3889,0.4,0.3944,35
+dev,awe,0.1778,0.2,0.1882,40
+dev,contentment,0.2727,0.2778,0.2752,54
+dev,excitement,0.3256,0.2745,0.2979,51
+dev,anger,0.3103,0.1837,0.2308,98
+dev,disgust,0.2857,0.4186,0.3396,43
+dev,fear,0.3514,0.3514,0.3514,74
+dev,sadness,0.2647,0.383,0.313,47
+test,amusement,0.375,0.4286,0.4,35
+test,awe,0.234,0.275,0.2529,40
+test,contentment,0.3871,0.4444,0.4138,54
+test,excitement,0.1633,0.1569,0.16,51
+test,anger,0.4545,0.2604,0.3311,96
+test,disgust,0.1964,0.2558,0.2222,43
+test,fear,0.4157,0.5,0.454,74
+test,sadness,0.2195,0.1957,0.2069,46
