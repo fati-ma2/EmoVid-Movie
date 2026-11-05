@@ -1,0 +1,24 @@
+# Partie audio (sons généraux) — code prévu pour Google Colab (Python 3)
+# Installation : pip install -r requirements.txt
+
+# Calcul et données
+numpy
+pandas
+scikit-learn
+matplotlib
+tqdm
+
+# Audio
+librosa
+
+# Modèles pré-entraînés (AST, CLAP, encodeur Whisper)
+torch
+transformers
+
+# b0 : transcription et détection de la parole
+faster-whisper
+av<16
+
+# b0 sur GPU (Colab) : bibliothèques CUDA utilisées par faster-whisper
+nvidia-cublas-cu12
+nvidia-cudnn-cu12==9.*
