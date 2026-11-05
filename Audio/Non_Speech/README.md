@@ -5,7 +5,7 @@ Auteur : Ghislain Nezerwe
 
 ## Contexte
 
-Ce dépôt contient le code de la **partie audio** du projet, consacrée aux **sons généraux** : musique, bruitages et ambiance sonore. L'objectif est de reconnaître l'émotion d'un extrait de film à partir de son **son uniquement**, puis de vérifier si l'audio améliore la reconnaissance faite à partir de la vidéo.
+Ce dépôt contient le code de la **partie audio** du projet, consacrée aux **sons généraux** : musique, bruitages et ambiance sonore. L'objectif est de reconnaître l'émotion d'un extrait de film à partir de son **son uniquement**.
 
 **Corpus :** EmoVid (Qiu et al., 2025), section « films » : 3 088 extraits issus de 350 films, annotés selon 8 émotions (amusement, awe, contentment, excitement, anger, disgust, fear, sadness).
 
@@ -41,8 +41,7 @@ Ce dépôt contient le code de la **partie audio** du projet, consacrée aux **s
 │   ├── b1_ast.ipynb                   # AST : vecteurs, classifieur, sons détectés par émotion
 │   ├── b2_clap.ipynb                  # CLAP : zero-shot, classifieur, fusion avec AST
 │   ├── b3_whisper_encoder.ipynb       # encodeur Whisper : choix de la couche, fusion avec AST
-│   ├── b4_surapprentissage.ipynb      # contrôle du surapprentissage des 3 modèles
-│   └── b5_fusion_audio_video.ipynb    # fusion audio + vidéo (moyenne pondérée, réseau de neurones)
+│   └── b4_surapprentissage.ipynb      # contrôle du surapprentissage des 3 modèles
 ├── splits/                       # liste des films de chaque ensemble
 ├── resultats/                    # resultats.csv et probabilités dev / test (preds/)
 └── figures/                      # matrices de confusion, courbes
@@ -54,9 +53,11 @@ Les notebooks sont prévus pour **Google Colab**. Ils sont à exécuter **dans l
 
 1. Copier `utils.py` et les notebooks dans un dossier Google Drive, puis adapter le chemin `CODE` dans la première cellule de chaque notebook.
 2. Déposer l'archive du corpus (`PROJET_SID_2026.zip`) sur le Drive : `utils.setup()` la copie et la décompresse automatiquement dans Colab.
-3. Exécuter **b0**, puis **b1 → b2 → b3** (un GPU T4 est conseillé pour l'extraction des vecteurs), puis **b4** et **b5** (pas besoin de GPU).
+3. Exécuter **b0**, puis **b1 → b2 → b3** (un GPU T4 est conseillé pour l'extraction des vecteurs), puis **b4** (pas besoin de GPU).
 
 Les vecteurs sont enregistrés au fur et à mesure : un calcul interrompu reprend là où il s'était arrêté.
+
+Les probabilités dev et test d'AST (`resultats/preds/`) sont celles utilisées dans la partie fusion du projet.
 
 > Les données (vidéos, audios) et les vecteurs extraits ne sont pas inclus dans ce dépôt : ils sont trop volumineux, et le corpus EmoVid est réservé à un usage de recherche non commercial.
 
@@ -73,6 +74,7 @@ Les vecteurs sont enregistrés au fur et à mesure : un calcul interrompu repren
 
 - Les trois modèles font environ **deux fois mieux que le hasard**, mais leurs écarts sont **plus petits que la marge d'erreur**.
 - **AST est retenu** : c'est le seul modèle stable entre le dev et le test, avec l'écart-type le plus faible en validation croisée et peu de sensibilité au réglage de `C`.
+- **Pas de surapprentissage marqué** : les scores sur le train restent bas (0,30 à 0,48) grâce à la régularisation.
 - **Pas de fuite d'information** : avec des étiquettes mélangées au hasard, les scores tombent au niveau du hasard (0,09 à 0,11).
 
 ### Ce que le son permet de reconnaître
@@ -81,24 +83,9 @@ Les vecteurs sont enregistrés au fur et à mesure : un calcul interrompu repren
 - **Awe** est la moins bien reconnue : elle n'a pas de musique propre et est souvent prise pour de la peur.
 - Dans les 986 extraits **sans parole**, le son dominant détecté par AST est la **musique** (68,5 %).
 
-### Fusion avec la vidéo (F1 macro au test)
-
-| Méthode | Dev | Test |
-|---|---|---|
-| HuBERT seul (voix, binôme) | 0,274 | 0,214 |
-| AST seul | 0,236 | 0,248 |
-| Vidéo seule | 0,406 | **0,351** |
-| Moyenne pondérée (vidéo 0,8 / HuBERT 0,2 / AST 0) | 0,414 | **0,351** |
-| Régression logistique | 0,331* | 0,320 |
-| Réseau de neurones (5 graines) | 0,273* | 0,335 |
-
-\* Score de validation croisée sur le dev.
-
-**L'audio n'apporte pas de gain mesurable à la vidéo.** Les modèles audio sont faibles, et le dev (442 extraits) est petit pour apprendre à combiner les sources.
-
 ## Conclusion
 
-Le son contient une information réelle sur l'émotion, surtout à travers la **musique**, mais limitée. **AST** est le modèle de sons le plus fiable. La vidéo reste la source principale, et les courbes d'apprentissage suggèrent qu'avec davantage de données, les modèles audio (en particulier Whisper et CLAP) pourraient encore progresser.
+Le son contient une information réelle sur l'émotion, surtout à travers la **musique**, mais limitée (F1 macro autour de 0,25). **AST** est le modèle de sons le plus fiable. Les courbes d'apprentissage suggèrent qu'avec davantage de données, Whisper et CLAP pourraient encore progresser, alors qu'AST semble avoir atteint un plateau.
 
 ## Références
 
@@ -107,4 +94,3 @@ Le son contient une information réelle sur l'émotion, surtout à travers la **
 - Gemmeke, J. F., et al. (2017). *Audio Set: An ontology and human-labeled dataset for audio events*. ICASSP.
 - Wu, Y., Chen, K., Zhang, T., Hui, Y., Berg-Kirkpatrick, T., & Dubnov, S. (2023). *Large-scale Contrastive Language-Audio Pretraining with Feature Fusion and Keyword-to-Caption Augmentation*. ICASSP.
 - Radford, A., Kim, J. W., Xu, T., Brockman, G., McLeavey, C., & Sutskever, I. (2023). *Robust Speech Recognition via Large-Scale Weak Supervision*. ICML.
-- Hsu, W.-N., et al. (2021). *HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction of Hidden Units*. IEEE/ACM TASLP.
