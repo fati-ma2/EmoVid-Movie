@@ -92,5 +92,3 @@ Le son contient une information réelle sur l'émotion, surtout à travers la **
 - Qiu, Z., Wang, B., Chen, X., He, Y., & Wang, Z. (2025). *EmoVid: A Multimodal Emotion Video Dataset for Emotion-Centric Video Understanding and Generation*. arXiv:2511.11002.
 - Gong, Y., Chung, Y.-A., & Glass, J. (2021). *AST: Audio Spectrogram Transformer*. Interspeech.
 - Gemmeke, J. F., et al. (2017). *Audio Set: An ontology and human-labeled dataset for audio events*. ICASSP.
-- Wu, Y., Chen, K., Zhang, T., Hui, Y., Berg-Kirkpatrick, T., & Dubnov, S. (2023). *Large-scale Contrastive Language-Audio Pretraining with Feature Fusion and Keyword-to-Caption Augmentation*. ICASSP.
-- Radford, A., Kim, J. W., Xu, T., Brockman, G., McLeavey, C., & Sutskever, I. (2023). *Robust Speech Recognition via Large-Scale Weak Supervision*. ICML.
