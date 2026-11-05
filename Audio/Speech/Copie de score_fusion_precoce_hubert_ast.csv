@@ -1,0 +1,2 @@
+fusion,C,class_weight,F1_macro_Dev
+HuBERT + AST,0.001,balanced,0.25898864049916526
