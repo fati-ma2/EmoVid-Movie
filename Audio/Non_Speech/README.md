@@ -1,11 +1,7 @@
 # Reconnaissance des émotions à partir du son — Partie audio (sons généraux)
-
-Projet Données Multimédia — M2 SID 2026
-Auteur : Ghislain Nezerwe
-
 ## Contexte
 
-Ce dépôt contient le code de la **partie audio** du projet, consacrée aux **sons généraux** : musique, bruitages et ambiance sonore. L'objectif est de reconnaître l'émotion d'un extrait de film à partir de son **son uniquement**.
+Ce dépôt contient le code de la partie audio du projet, consacrée aux **sons généraux** : musique, bruitages et ambiance sonore. L'objectif est de reconnaître l'émotion d'un extrait de film à partir de son **son** uniquement.
 
 **Corpus :** EmoVid (Qiu et al., 2025), section « films » : 3 088 extraits issus de 350 films, annotés selon 8 émotions (amusement, awe, contentment, excitement, anger, disgust, fear, sadness).
 
@@ -19,10 +15,10 @@ Ce dépôt contient le code de la **partie audio** du projet, consacrée aux **s
 
 ## Méthode
 
-1. Chaque extrait est transformé en **vecteur de nombres** par un **modèle pré-entraîné et gelé**, que l'on ne réentraîne pas.
-2. Un **classifieur commun** (standardisation + régression logistique pondérée par classe) apprend à reconnaître les 8 émotions.
+1. Chaque extrait est transformé en vecteur de nombres par un modèle pré-entraîné et gelé, que l'on ne réentraîne pas.
+2. Un classifieur commun(standardisation + régression logistique pondérée par classe) apprend à reconnaître les 8 émotions.
 3. La régularisation `C` est choisie sur le **dev** : on prend le plus petit `C` dont le score est à moins de 0,01 du meilleur, pour limiter le surapprentissage.
-4. Le score final est mesuré **une seule fois sur le test**, avec le **F1 macro** (même poids pour les 8 émotions). Il est aussi calculé séparément pour les extraits **avec** et **sans parole**.
+4. Le score final est mesuré une seule fois sur le **test**, avec le **F1 macro** (même poids pour les 8 émotions). Il est aussi calculé séparément pour les extraits avec et sans parole.
 
 | Modèle | Référence Hugging Face | Paramètres | Ce qu'il a appris |
 |---|---|---|---|
@@ -42,14 +38,13 @@ Ce dépôt contient le code de la **partie audio** du projet, consacrée aux **s
 │   ├── b2_clap.ipynb                  # CLAP : zero-shot, classifieur, fusion avec AST
 │   ├── b3_whisper_encoder.ipynb       # encodeur Whisper : choix de la couche, fusion avec AST
 │   └── b4_surapprentissage.ipynb      # contrôle du surapprentissage des 3 modèles
-├── splits/                       # liste des films de chaque ensemble
 ├── resultats/                    # resultats.csv et probabilités dev / test (preds/)
 └── figures/                      # matrices de confusion, courbes
 ```
 
 ## Exécution
 
-Les notebooks sont prévus pour **Google Colab**. Ils sont à exécuter **dans l'ordre** :
+Les notebooks sont prévus pour Google Colab. Ils sont à exécuter dans l'ordre:
 
 1. Copier `utils.py` et les notebooks dans un dossier Google Drive, puis adapter le chemin `CODE` dans la première cellule de chaque notebook.
 2. Déposer l'archive du corpus (`PROJET_SID_2026.zip`) sur le Drive : `utils.setup()` la copie et la décompresse automatiquement dans Colab.
@@ -72,16 +67,16 @@ Les probabilités dev et test d'AST (`resultats/preds/`) sont celles utilisées 
 | Whisper | 0,310 | 0,254 | 0,247 ± 0,035 |
 | Fusion tardive AST + Whisper | 0,319 | 0,267 | 0,250 ± 0,028 |
 
-- Les trois modèles font environ **deux fois mieux que le hasard**, mais leurs écarts sont **plus petits que la marge d'erreur**.
-- **AST est retenu** : c'est le seul modèle stable entre le dev et le test, avec l'écart-type le plus faible en validation croisée et peu de sensibilité au réglage de `C`.
-- **Pas de surapprentissage marqué** : les scores sur le train restent bas (0,30 à 0,48) grâce à la régularisation.
-- **Pas de fuite d'information** : avec des étiquettes mélangées au hasard, les scores tombent au niveau du hasard (0,09 à 0,11).
+- Les trois modèles font environ deux fois mieux que le hasard, mais leurs écarts sont plus petits que la marge d'erreur.
+- **AST** est retenu: c'est le seul modèle stable entre le dev et le test, avec l'écart-type le plus faible en validation croisée et peu de sensibilité au réglage de `C`.
+- Pas de surapprentissage marqué: les scores sur le train restent bas (0,30 à 0,48) grâce à la régularisation.
+- Pas de fuite d'information: avec des étiquettes mélangées au hasard, les scores tombent au niveau du hasard (0,09 à 0,11).
 
 ### Ce que le son permet de reconnaître
 
 - Les émotions les mieux reconnues sont **la peur** (F1 0,46 pour AST au test) et **l'amusement**, qui ont une musique typique : « Scary » ×2,8 pour la peur, « Funny » ×3,8 pour l'amusement.
-- **Awe** est la moins bien reconnue : elle n'a pas de musique propre et est souvent prise pour de la peur.
-- Dans les 986 extraits **sans parole**, le son dominant détecté par AST est la **musique** (68,5 %).
+- **Awe** est la moins bien reconnue: elle n'a pas de musique propre et est souvent prise pour de la peur.
+- Dans les 986 extraits sans parole, le son dominant détecté par AST est la **musique** (68,5 %).
 
 ## Conclusion
 
